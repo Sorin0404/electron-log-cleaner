@@ -72,28 +72,24 @@ describe('validator', () => {
 
   describe('validateFileTransport', () => {
     it('should throw if maxSize is not a number', () => {
-      expect(() => validateFileTransport({ maxSize: '1000' }))
-        .toThrow('maxSize must be a number');
-      expect(() => validateFileTransport({ maxSize: true }))
-        .toThrow('maxSize must be a number');
+      expect(() => validateFileTransport({ maxSize: '1000' })).toThrow('maxSize must be a number');
+      expect(() => validateFileTransport({ maxSize: true })).toThrow('maxSize must be a number');
     });
 
     it('should throw if format is not a string', () => {
-      expect(() => validateFileTransport({ format: 123 }))
-        .toThrow('format must be a string');
-      expect(() => validateFileTransport({ format: true }))
-        .toThrow('format must be a string');
-      expect(() => validateFileTransport({ format: {} }))
-        .toThrow('format must be a string');
+      expect(() => validateFileTransport({ format: 123 })).toThrow('format must be a string');
+      expect(() => validateFileTransport({ format: true })).toThrow('format must be a string');
+      expect(() => validateFileTransport({ format: {} })).toThrow('format must be a string');
     });
 
     it('should throw if level is invalid', () => {
-      expect(() => validateFileTransport({ level: 'invalid' }))
-        .toThrow('level must be a valid log level');
-      expect(() => validateFileTransport({ level: 123 }))
-        .toThrow('level must be a valid log level');
-      expect(() => validateFileTransport({ level: {} }))
-        .toThrow('level must be a valid log level');
+      expect(() => validateFileTransport({ level: 'invalid' })).toThrow(
+        'level must be a valid log level',
+      );
+      expect(() => validateFileTransport({ level: 123 })).toThrow(
+        'level must be a valid log level',
+      );
+      expect(() => validateFileTransport({ level: {} })).toThrow('level must be a valid log level');
     });
 
     it('should pass with valid log levels', () => {

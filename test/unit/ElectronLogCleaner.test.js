@@ -245,8 +245,7 @@ describe('ElectronLogCleaner', () => {
       // Create a new cleaner without mocked electron-log
       const newCleaner = new ElectronLogCleaner();
 
-      expect(() => newCleaner.setup({ maxAge: 30 }))
-        .toThrow('electron-log not found');
+      expect(() => newCleaner.setup({ maxAge: 30 })).toThrow('electron-log not found');
     });
   });
 

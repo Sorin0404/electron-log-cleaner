@@ -1,0 +1,44 @@
+# Test files
+test/
+coverage/
+*.test.js
+*.spec.js
+
+# Development files
+.github/
+examples/
+.eslintrc.js
+.prettierrc.js
+jest.config.js
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.travis.yml
+.circleci/
+azure-pipelines.yml
+
+# Documentation (keep only essential)
+CONTRIBUTING.md
+
+# Other
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+.env.local

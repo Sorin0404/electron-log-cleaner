@@ -45,10 +45,7 @@ describe('logger', () => {
       logError('Error occurred', error);
 
       expect(consoleErrorSpy).toHaveBeenCalledTimes(2);
-      expect(consoleErrorSpy).toHaveBeenNthCalledWith(
-        1,
-        '[ElectronLogCleaner] Error occurred',
-      );
+      expect(consoleErrorSpy).toHaveBeenNthCalledWith(1, '[ElectronLogCleaner] Error occurred');
       expect(consoleErrorSpy).toHaveBeenNthCalledWith(2, error);
     });
 
@@ -70,14 +67,8 @@ describe('logger', () => {
       logWarning('Warning 1');
       logWarning('Warning 2');
       expect(consoleWarnSpy).toHaveBeenCalledTimes(2);
-      expect(consoleWarnSpy).toHaveBeenNthCalledWith(
-        1,
-        '[ElectronLogCleaner] Warning 1',
-      );
-      expect(consoleWarnSpy).toHaveBeenNthCalledWith(
-        2,
-        '[ElectronLogCleaner] Warning 2',
-      );
+      expect(consoleWarnSpy).toHaveBeenNthCalledWith(1, '[ElectronLogCleaner] Warning 1');
+      expect(consoleWarnSpy).toHaveBeenNthCalledWith(2, '[ElectronLogCleaner] Warning 2');
     });
   });
 });
