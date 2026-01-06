@@ -1,0 +1,54 @@
+{
+  "name": "electron-log-cleaner",
+  "version": "1.0.0",
+  "description": "Automatically clean up old Electron logs. Simple and safe.",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/ test/",
+    "lint:fix": "eslint src/ test/ --fix",
+    "format": "prettier --write \"src/**/*.js\" \"test/**/*.js\"",
+    "prepublishOnly": "npm run test && npm run lint"
+  },
+  "keywords": [
+    "electron",
+    "log",
+    "logging",
+    "cleanup",
+    "rotation",
+    "electron-log",
+    "log-management"
+  ],
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/electron-log-cleaner.git"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "peerDependencies": {
+    "electron-log": "^5.0.0"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.10"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.1.1"
+  },
+  "files": [
+    "src/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ]
+}
