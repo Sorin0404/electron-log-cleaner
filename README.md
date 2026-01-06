@@ -6,7 +6,16 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/node/v/electron-log-cleaner.svg)](https://nodejs.org)
 
+**Language**: English | [한국어](./docs/ko/README.md)
+
 Automatic log file rotation and cleanup utility for electron-log. Manages log files by date, automatically rotates at midnight, and removes old logs based on configurable retention periods.
+
+## Documentation
+
+- [English Documentation](./README.md) (Current)
+- [한국어 문서](./docs/ko/README.md)
+  - [API 레퍼런스](./docs/ko/api.md)
+  - [사용 예제](./docs/ko/examples.md)
 
 ## Features
 
