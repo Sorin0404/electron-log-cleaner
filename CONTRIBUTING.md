@@ -37,6 +37,7 @@ Use the [feature request template](.github/ISSUE_TEMPLATE/feature_request.md).
 1. **Fork the repository** and create your branch from `main`
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
@@ -47,6 +48,7 @@ Use the [feature request template](.github/ISSUE_TEMPLATE/feature_request.md).
    - Update documentation as needed
 
 4. **Run tests and checks**
+
    ```bash
    # Run all tests
    npm test
@@ -179,6 +181,7 @@ npm run test:coverage
 ### Coverage Requirements
 
 All pull requests must maintain:
+
 - **90%+** statement coverage
 - **90%+** branch coverage
 - **90%+** function coverage
@@ -206,6 +209,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 ```
 
 **Types:**
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation only
@@ -246,6 +250,7 @@ Releases are managed by maintainers:
 ## Questions?
 
 Feel free to:
+
 - Open an issue for questions
 - Join discussions in existing issues
 - Reach out to maintainers

@@ -26,7 +26,7 @@ const cleaner = require('electron-log-cleaner');
 
 // 최소 설정 - 보관 일수만 지정
 cleaner.setup({
-  maxAge: 30  // 30일간 로그 보관
+  maxAge: 30, // 30일간 로그 보관
 });
 
 console.log('로그 cleaner가 30일 보관 정책으로 초기화되었습니다');
@@ -73,7 +73,7 @@ app.whenReady().then(() => {
     maxAge: 30,
     electronLog: log,
     fileTransport: {
-      maxSize: 10 * 1024 * 1024,  // 파일당 10 MB
+      maxSize: 10 * 1024 * 1024, // 파일당 10 MB
       format: '[{y}-{m}-{d} {h}:{i}:{s}.{ms}] [{level}] {text}',
       level: 'info',
     },
@@ -220,9 +220,9 @@ if (isDevelopment) {
 const isDev = process.env.NODE_ENV === 'development';
 
 cleaner.setup({
-  maxAge: isDev ? 7 : 30,  // 개발: 7일, 프로덕션: 30일
+  maxAge: isDev ? 7 : 30, // 개발: 7일, 프로덕션: 30일
   fileTransport: {
-    level: isDev ? 'debug' : 'info',  // 개발: 더 자세하게
+    level: isDev ? 'debug' : 'info', // 개발: 더 자세하게
     maxSize: isDev ? 5 * 1024 * 1024 : 10 * 1024 * 1024,
   },
 });
@@ -325,15 +325,19 @@ process.on('exit', () => {
 
 ```javascript
 // 매시간 통계 체크
-setInterval(() => {
-  const stats = cleaner.getStats();
-  const sizeMB = stats.totalSize / 1024 / 1024;
+setInterval(
+  () => {
+    const stats = cleaner.getStats();
+    const sizeMB = stats.totalSize / 1024 / 1024;
 
-  if (sizeMB > 100) { // 100MB 초과
-    console.log(`로그 크기가 큽니다: ${sizeMB.toFixed(2)} MB`);
-    cleaner.cleanup();
-  }
-}, 60 * 60 * 1000);
+    if (sizeMB > 100) {
+      // 100MB 초과
+      console.log(`로그 크기가 큽니다: ${sizeMB.toFixed(2)} MB`);
+      cleaner.cleanup();
+    }
+  },
+  60 * 60 * 1000
+);
 ```
 
 #### 디스크 공간 모니터링
@@ -473,9 +477,7 @@ function setupProductionCleaner() {
         }
 
         // 애플리케이션을 중단시키지 않음
-        console.error(
-          '로그 cleaner에서 에러가 발생했지만 애플리케이션은 계속됩니다'
-        );
+        console.error('로그 cleaner에서 에러가 발생했지만 애플리케이션은 계속됩니다');
       },
     });
 
@@ -598,16 +600,19 @@ cleaner.setup({
 
 ```javascript
 // 매시간 통계 보고
-setInterval(() => {
-  const stats = cleaner.getStats();
+setInterval(
+  () => {
+    const stats = cleaner.getStats();
 
-  log.info('로그 통계', {
-    files: stats.totalFiles,
-    sizeMB: (stats.totalSize / 1024 / 1024).toFixed(2),
-    oldestFile: stats.oldestFile,
-    directory: stats.logDir,
-  });
-}, 60 * 60 * 1000);
+    log.info('로그 통계', {
+      files: stats.totalFiles,
+      sizeMB: (stats.totalSize / 1024 / 1024).toFixed(2),
+      oldestFile: stats.oldestFile,
+      directory: stats.logDir,
+    });
+  },
+  60 * 60 * 1000
+);
 ```
 
 ### 조건부 정리

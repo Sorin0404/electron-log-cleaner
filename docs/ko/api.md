@@ -34,12 +34,12 @@ interface CleanerOptions {
 
 #### 속성
 
-| 이름 | 타입 | 필수 | 설명 |
-|------|------|------|------|
-| `maxAge` | `number` | ✓ | 로그 파일의 최대 보관 일수. 이 일수보다 오래된 파일은 삭제됩니다. |
-| `electronLog` | `ElectronLog` | ✗ | electron-log 인스턴스. 제공하지 않으면 자동으로 감지를 시도합니다. |
-| `fileTransport` | `FileTransportOptions` | ✗ | electron-log에 적용할 파일 전송 옵션 |
-| `onError` | `(error: Error) => void` | ✗ | 정리 중 에러 발생 시 호출되는 콜백 함수 |
+| 이름            | 타입                     | 필수 | 설명                                                               |
+| --------------- | ------------------------ | ---- | ------------------------------------------------------------------ |
+| `maxAge`        | `number`                 | ✓    | 로그 파일의 최대 보관 일수. 이 일수보다 오래된 파일은 삭제됩니다.  |
+| `electronLog`   | `ElectronLog`            | ✗    | electron-log 인스턴스. 제공하지 않으면 자동으로 감지를 시도합니다. |
+| `fileTransport` | `FileTransportOptions`   | ✗    | electron-log에 적용할 파일 전송 옵션                               |
+| `onError`       | `(error: Error) => void` | ✗    | 정리 중 에러 발생 시 호출되는 콜백 함수                            |
 
 #### 예제
 
@@ -49,11 +49,11 @@ const options = {
   electronLog: log,
   fileTransport: {
     maxSize: 10 * 1024 * 1024,
-    level: 'info'
+    level: 'info',
   },
   onError: (error) => {
     console.error('에러 발생:', error);
-  }
+  },
 };
 
 cleaner.setup(options);
@@ -75,15 +75,16 @@ interface FileTransportOptions {
 
 #### 속성
 
-| 이름 | 타입 | 기본값 | 설명 |
-|------|------|--------|------|
-| `maxSize` | `number` | - | 단일 로그 파일의 최대 크기 (바이트) |
-| `format` | `string` | - | 로그 형식 문자열 (예: `'[{y}-{m}-{d}] {text}'`) |
-| `level` | `string \| false` | - | 파일에 기록할 최소 로그 레벨 |
+| 이름      | 타입              | 기본값 | 설명                                            |
+| --------- | ----------------- | ------ | ----------------------------------------------- |
+| `maxSize` | `number`          | -      | 단일 로그 파일의 최대 크기 (바이트)             |
+| `format`  | `string`          | -      | 로그 형식 문자열 (예: `'[{y}-{m}-{d}] {text}'`) |
+| `level`   | `string \| false` | -      | 파일에 기록할 최소 로그 레벨                    |
 
 #### 로그 레벨
 
 사용 가능한 로그 레벨 (우선순위 높은 순):
+
 - `'error'` - 에러만
 - `'warn'` - 경고 이상
 - `'info'` - 정보 이상 (권장)
@@ -94,30 +95,30 @@ interface FileTransportOptions {
 
 #### 형식 문자열 변수
 
-| 변수 | 설명 |
-|------|------|
-| `{y}` | 연도 (4자리) |
-| `{m}` | 월 (2자리) |
-| `{d}` | 일 (2자리) |
-| `{h}` | 시 (2자리) |
-| `{i}` | 분 (2자리) |
-| `{s}` | 초 (2자리) |
-| `{ms}` | 밀리초 (3자리) |
-| `{level}` | 로그 레벨 |
-| `{text}` | 로그 메시지 |
+| 변수      | 설명           |
+| --------- | -------------- |
+| `{y}`     | 연도 (4자리)   |
+| `{m}`     | 월 (2자리)     |
+| `{d}`     | 일 (2자리)     |
+| `{h}`     | 시 (2자리)     |
+| `{i}`     | 분 (2자리)     |
+| `{s}`     | 초 (2자리)     |
+| `{ms}`    | 밀리초 (3자리) |
+| `{level}` | 로그 레벨      |
+| `{text}`  | 로그 메시지    |
 
 #### 예제
 
 ```javascript
 const fileTransport = {
-  maxSize: 5 * 1024 * 1024,  // 5MB
+  maxSize: 5 * 1024 * 1024, // 5MB
   format: '[{y}-{m}-{d} {h}:{i}:{s}] [{level}] {text}',
-  level: 'info'
+  level: 'info',
 };
 
 cleaner.setup({
   maxAge: 30,
-  fileTransport
+  fileTransport,
 });
 ```
 
@@ -137,11 +138,11 @@ interface CleanupResult {
 
 #### 속성
 
-| 이름 | 타입 | 설명 |
-|------|------|------|
-| `deletedCount` | `number` | 삭제된 파일 개수 |
-| `deletedFiles` | `string[]` | 삭제된 파일명 배열 |
-| `error` | `string` | 정리 실패 시 에러 메시지 (선택) |
+| 이름           | 타입       | 설명                            |
+| -------------- | ---------- | ------------------------------- |
+| `deletedCount` | `number`   | 삭제된 파일 개수                |
+| `deletedFiles` | `string[]` | 삭제된 파일명 배열              |
+| `error`        | `string`   | 정리 실패 시 에러 메시지 (선택) |
 
 #### 예제
 
@@ -152,7 +153,7 @@ if (result.error) {
   console.error('정리 실패:', result.error);
 } else {
   console.log(`${result.deletedCount}개 파일 삭제됨`);
-  result.deletedFiles.forEach(file => {
+  result.deletedFiles.forEach((file) => {
     console.log(`- ${file}`);
   });
 }
@@ -180,17 +181,17 @@ interface CleanupStats {
 
 #### 속성
 
-| 이름 | 타입 | 설명 |
-|------|------|------|
-| `totalFiles` | `number` | 전체 로그 파일 개수 |
-| `totalSize` | `number` | 모든 로그 파일의 전체 크기 (바이트) |
-| `oldestFile` | `string \| null` | 가장 오래된 로그 파일명 |
-| `oldestDate` | `string \| null` | 가장 오래된 로그 파일 날짜 (YYYY-MM-DD HH:mm:ss) |
-| `newestFile` | `string \| null` | 가장 최근 로그 파일명 |
-| `newestDate` | `string \| null` | 가장 최근 로그 파일 날짜 (YYYY-MM-DD HH:mm:ss) |
-| `logDir` | `string` | 로그 디렉토리 경로 |
-| `currentDate` | `string` | 현재 날짜 (YYYYMMDD 형식) |
-| `error` | `string` | 통계 조회 실패 시 에러 메시지 (선택) |
+| 이름          | 타입             | 설명                                             |
+| ------------- | ---------------- | ------------------------------------------------ |
+| `totalFiles`  | `number`         | 전체 로그 파일 개수                              |
+| `totalSize`   | `number`         | 모든 로그 파일의 전체 크기 (바이트)              |
+| `oldestFile`  | `string \| null` | 가장 오래된 로그 파일명                          |
+| `oldestDate`  | `string \| null` | 가장 오래된 로그 파일 날짜 (YYYY-MM-DD HH:mm:ss) |
+| `newestFile`  | `string \| null` | 가장 최근 로그 파일명                            |
+| `newestDate`  | `string \| null` | 가장 최근 로그 파일 날짜 (YYYY-MM-DD HH:mm:ss)   |
+| `logDir`      | `string`         | 로그 디렉토리 경로                               |
+| `currentDate` | `string`         | 현재 날짜 (YYYYMMDD 형식)                        |
+| `error`       | `string`         | 통계 조회 실패 시 에러 메시지 (선택)             |
 
 #### 예제
 
@@ -230,6 +231,7 @@ setup(options: CleanerOptions): void
 #### 에러
 
 다음의 경우 에러를 발생시킵니다:
+
 - `options`가 객체가 아닌 경우
 - `maxAge`가 제공되지 않거나 숫자가 아닌 경우
 - `maxAge`가 0 이하인 경우
@@ -251,13 +253,15 @@ setup(options: CleanerOptions): void
 #### 예제
 
 **기본 설정:**
+
 ```javascript
 cleaner.setup({
-  maxAge: 30
+  maxAge: 30,
 });
 ```
 
 **전체 설정:**
+
 ```javascript
 cleaner.setup({
   maxAge: 30,
@@ -265,21 +269,22 @@ cleaner.setup({
   fileTransport: {
     maxSize: 10 * 1024 * 1024,
     format: '[{y}-{m}-{d} {h}:{i}:{s}] [{level}] {text}',
-    level: 'info'
+    level: 'info',
   },
   onError: (error) => {
     console.error('로그 cleaner 에러:', error);
     // 모니터링 서비스로 전송
     Sentry.captureException(error);
-  }
+  },
 });
 ```
 
 **에러 처리:**
+
 ```javascript
 try {
   cleaner.setup({
-    maxAge: 30
+    maxAge: 30,
   });
   console.log('로그 cleaner 초기화 성공');
 } catch (error) {
@@ -314,12 +319,14 @@ cleanup(): CleanupResult
 #### 예제
 
 **기본 사용:**
+
 ```javascript
 const result = cleaner.cleanup();
 console.log(`${result.deletedCount}개 파일 삭제됨`);
 ```
 
 **상세 정보:**
+
 ```javascript
 const result = cleaner.cleanup();
 
@@ -336,15 +343,19 @@ if (result.error) {
 ```
 
 **스케줄링된 정리:**
+
 ```javascript
 // 매주 일요일 자정에 정리 (자동 자정 정리에 추가)
-setInterval(() => {
-  const now = new Date();
-  if (now.getDay() === 0 && now.getHours() === 0) {
-    const result = cleaner.cleanup();
-    console.log(`주간 정리: ${result.deletedCount}개 파일 삭제됨`);
-  }
-}, 60 * 60 * 1000); // 매시간 체크
+setInterval(
+  () => {
+    const now = new Date();
+    if (now.getDay() === 0 && now.getHours() === 0) {
+      const result = cleaner.cleanup();
+      console.log(`주간 정리: ${result.deletedCount}개 파일 삭제됨`);
+    }
+  },
+  60 * 60 * 1000
+); // 매시간 체크
 ```
 
 ---
@@ -376,6 +387,7 @@ getStats(): CleanupStats
 #### 예제
 
 **기본 사용:**
+
 ```javascript
 const stats = cleaner.getStats();
 console.log(`전체 파일: ${stats.totalFiles}`);
@@ -383,6 +395,7 @@ console.log(`전체 크기: ${(stats.totalSize / 1024 / 1024).toFixed(2)} MB`);
 ```
 
 **상세 정보:**
+
 ```javascript
 function displayStats() {
   const stats = cleaner.getStats();
@@ -410,30 +423,47 @@ displayStats();
 ```
 
 **정리 전후 비교:**
+
 ```javascript
 const before = cleaner.getStats();
-console.log('정리 전:', before.totalFiles, '파일,', (before.totalSize / 1024 / 1024).toFixed(2), 'MB');
+console.log(
+  '정리 전:',
+  before.totalFiles,
+  '파일,',
+  (before.totalSize / 1024 / 1024).toFixed(2),
+  'MB'
+);
 
 cleaner.cleanup();
 
 const after = cleaner.getStats();
-console.log('정리 후:', after.totalFiles, '파일,', (after.totalSize / 1024 / 1024).toFixed(2), 'MB');
+console.log(
+  '정리 후:',
+  after.totalFiles,
+  '파일,',
+  (after.totalSize / 1024 / 1024).toFixed(2),
+  'MB'
+);
 
 const saved = before.totalSize - after.totalSize;
 console.log('절약된 공간:', (saved / 1024 / 1024).toFixed(2), 'MB');
 ```
 
 **모니터링 대시보드:**
+
 ```javascript
 // 매시간 통계 로깅
-setInterval(() => {
-  const stats = cleaner.getStats();
-  log.info('로그 통계', {
-    files: stats.totalFiles,
-    sizeMB: (stats.totalSize / 1024 / 1024).toFixed(2),
-    oldestFile: stats.oldestFile
-  });
-}, 60 * 60 * 1000);
+setInterval(
+  () => {
+    const stats = cleaner.getStats();
+    log.info('로그 통계', {
+      files: stats.totalFiles,
+      sizeMB: (stats.totalSize / 1024 / 1024).toFixed(2),
+      oldestFile: stats.oldestFile,
+    });
+  },
+  60 * 60 * 1000
+);
 ```
 
 ---
@@ -482,7 +512,7 @@ cleaner.setup({
     if (process.env.NODE_ENV === 'production') {
       Sentry.captureException(error);
     }
-  }
+  },
 });
 ```
 
@@ -520,7 +550,7 @@ cleaner.setup({
   maxAge: 30,
   onError: (error) => {
     log.error('로그 cleaner 에러:', error);
-  }
+  },
 });
 ```
 
@@ -532,23 +562,27 @@ const isDev = process.env.NODE_ENV === 'development';
 cleaner.setup({
   maxAge: isDev ? 7 : 30,
   fileTransport: {
-    level: isDev ? 'debug' : 'info'
-  }
+    level: isDev ? 'debug' : 'info',
+  },
 });
 ```
 
 ### 3. 디스크 공간 모니터링
 
 ```javascript
-setInterval(() => {
-  const stats = cleaner.getStats();
-  const sizeMB = stats.totalSize / 1024 / 1024;
+setInterval(
+  () => {
+    const stats = cleaner.getStats();
+    const sizeMB = stats.totalSize / 1024 / 1024;
 
-  if (sizeMB > 100) { // 100MB 이상
-    log.warn('로그 크기가 큽니다:', sizeMB.toFixed(2), 'MB');
-    cleaner.cleanup();
-  }
-}, 60 * 60 * 1000); // 매시간
+    if (sizeMB > 100) {
+      // 100MB 이상
+      log.warn('로그 크기가 큽니다:', sizeMB.toFixed(2), 'MB');
+      cleaner.cleanup();
+    }
+  },
+  60 * 60 * 1000
+); // 매시간
 ```
 
 ### 4. Try-Catch로 설정 감싸기

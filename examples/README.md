@@ -23,11 +23,13 @@ npm install
 The simplest way to use electron-log-cleaner with minimal configuration.
 
 **What you'll learn:**
+
 - How to set up with just `maxAge` parameter
 - How to get log statistics
 - Automatic log rotation and cleanup
 
 **Run:**
+
 ```bash
 node examples/basic-usage.js
 ```
@@ -37,12 +39,14 @@ node examples/basic-usage.js
 Integration with an Electron application's main process.
 
 **What you'll learn:**
+
 - How to integrate with Electron's app lifecycle
 - Setting up in `app.whenReady()`
 - Configuring file transport options
 - Error handling in production apps
 
 **Note:** This example requires Electron to be installed:
+
 ```bash
 npm install electron --save-dev
 ```
@@ -52,6 +56,7 @@ npm install electron --save-dev
 Advanced configuration with custom file transport settings.
 
 **What you'll learn:**
+
 - Custom log file size limits
 - Custom log format strings
 - Log level configuration
@@ -59,6 +64,7 @@ Advanced configuration with custom file transport settings.
 - Error callbacks
 
 **Run:**
+
 ```bash
 node examples/custom-config.js
 ```
@@ -68,6 +74,7 @@ node examples/custom-config.js
 Manual cleanup triggers and working with statistics.
 
 **What you'll learn:**
+
 - How to manually trigger cleanup
 - Working with `CleanupResult`
 - Formatting and displaying statistics
@@ -75,6 +82,7 @@ Manual cleanup triggers and working with statistics.
 - Cleanup on application shutdown
 
 **Run:**
+
 ```bash
 node examples/manual-cleanup.js
 ```
@@ -84,6 +92,7 @@ node examples/manual-cleanup.js
 Comprehensive error handling strategies.
 
 **What you'll learn:**
+
 - Validating options before setup
 - Handling setup errors
 - Runtime error callbacks
@@ -91,6 +100,7 @@ Comprehensive error handling strategies.
 - Graceful degradation
 
 **Run:**
+
 ```bash
 node examples/error-handling.js
 ```
@@ -103,11 +113,11 @@ node examples/error-handling.js
 const isDev = process.env.NODE_ENV === 'development';
 
 cleaner.setup({
-  maxAge: isDev ? 7 : 30,  // Shorter retention in dev
+  maxAge: isDev ? 7 : 30, // Shorter retention in dev
   fileTransport: {
-    level: isDev ? 'debug' : 'info',  // More verbose in dev
-    maxSize: isDev ? 5 * 1024 * 1024 : 10 * 1024 * 1024
-  }
+    level: isDev ? 'debug' : 'info', // More verbose in dev
+    maxSize: isDev ? 5 * 1024 * 1024 : 10 * 1024 * 1024,
+  },
 });
 ```
 
@@ -118,8 +128,8 @@ cleaner.setup({
   maxAge: parseInt(process.env.LOG_RETENTION_DAYS) || 30,
   fileTransport: {
     maxSize: parseInt(process.env.LOG_MAX_SIZE) || 10 * 1024 * 1024,
-    level: process.env.LOG_LEVEL || 'info'
-  }
+    level: process.env.LOG_LEVEL || 'info',
+  },
 });
 ```
 
@@ -136,9 +146,9 @@ cleaner.setup({
     monitoring.logError({
       component: 'log-cleaner',
       error: error.message,
-      stack: error.stack
+      stack: error.stack,
     });
-  }
+  },
 });
 ```
 

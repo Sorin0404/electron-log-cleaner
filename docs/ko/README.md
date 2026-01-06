@@ -22,16 +22,19 @@ electron-log의 자동 로그 파일 회전 및 정리 유틸리티입니다. �
 ## 설치
 
 npm 사용:
+
 ```bash
 npm install electron-log-cleaner
 ```
 
 yarn 사용:
+
 ```bash
 yarn add electron-log-cleaner
 ```
 
 pnpm 사용:
+
 ```bash
 pnpm add electron-log-cleaner
 ```
@@ -45,7 +48,7 @@ import cleaner from 'electron-log-cleaner';
 
 // 최소 설정으로 설정
 cleaner.setup({
-  maxAge: 30  // 30일간 로그 보관
+  maxAge: 30, // 30일간 로그 보관
 });
 ```
 
@@ -56,7 +59,7 @@ const cleaner = require('electron-log-cleaner');
 
 // 최소 설정으로 설정
 cleaner.setup({
-  maxAge: 30  // 30일간 로그 보관
+  maxAge: 30, // 30일간 로그 보관
 });
 ```
 
@@ -69,7 +72,7 @@ import cleaner from 'electron-log-cleaner';
 // electron-log 인스턴스와 함께 cleaner 설정
 cleaner.setup({
   maxAge: 30,
-  electronLog: log
+  electronLog: log,
 });
 
 // electron-log를 평소처럼 사용
@@ -82,10 +85,10 @@ log.info('애플리케이션 시작됨');
 
 ```typescript
 interface CleanerOptions {
-  maxAge: number;                    // 필수: 로그 파일의 최대 보관 일수
-  electronLog?: ElectronLog;         // 선택: electron-log 인스턴스 (제공하지 않으면 자동 감지)
-  fileTransport?: FileTransportOptions;  // 선택: 파일 전송 설정
-  onError?: (error: Error) => void;  // 선택: 에러 콜백
+  maxAge: number; // 필수: 로그 파일의 최대 보관 일수
+  electronLog?: ElectronLog; // 선택: electron-log 인스턴스 (제공하지 않으면 자동 감지)
+  fileTransport?: FileTransportOptions; // 선택: 파일 전송 설정
+  onError?: (error: Error) => void; // 선택: 에러 콜백
 }
 ```
 
@@ -93,9 +96,9 @@ interface CleanerOptions {
 
 ```typescript
 interface FileTransportOptions {
-  maxSize?: number;     // 단일 로그 파일의 최대 크기 (바이트)
-  format?: string;      // 로그 형식 문자열 (예: '[{y}-{m}-{d}] {text}')
-  level?: string | false;  // 최소 로그 레벨: 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly' | false
+  maxSize?: number; // 단일 로그 파일의 최대 크기 (바이트)
+  format?: string; // 로그 형식 문자열 (예: '[{y}-{m}-{d}] {text}')
+  level?: string | false; // 최소 로그 레벨: 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly' | false
 }
 ```
 
@@ -110,13 +113,13 @@ cleaner.setup({
   maxAge: 30,
   electronLog: log,
   fileTransport: {
-    maxSize: 10 * 1024 * 1024,  // 10 MB
+    maxSize: 10 * 1024 * 1024, // 10 MB
     format: '[{y}-{m}-{d} {h}:{i}:{s}.{ms}] [{level}] {text}',
-    level: 'info'
+    level: 'info',
   },
   onError: (error) => {
     console.error('Cleaner 에러:', error);
-  }
+  },
 });
 ```
 
@@ -133,11 +136,12 @@ console.log('삭제된 파일:', result.deletedFiles);
 ```
 
 **반환값**: `CleanupResult`
+
 ```typescript
 interface CleanupResult {
-  deletedCount: number;      // 삭제된 파일 개수
-  deletedFiles: string[];    // 삭제된 파일명 배열
-  error?: string;            // 정리 실패 시 에러 메시지
+  deletedCount: number; // 삭제된 파일 개수
+  deletedFiles: string[]; // 삭제된 파일명 배열
+  error?: string; // 정리 실패 시 에러 메시지
 }
 ```
 
@@ -154,17 +158,18 @@ console.log(`가장 최근 파일: ${stats.newestFile} (${stats.newestDate})`);
 ```
 
 **반환값**: `CleanupStats`
+
 ```typescript
 interface CleanupStats {
-  totalFiles: number;        // 전체 로그 파일 개수
-  totalSize: number;         // 모든 로그 파일의 전체 크기 (바이트)
+  totalFiles: number; // 전체 로그 파일 개수
+  totalSize: number; // 모든 로그 파일의 전체 크기 (바이트)
   oldestFile: string | null; // 가장 오래된 로그 파일명
   oldestDate: string | null; // 가장 오래된 로그 파일 날짜 (YYYY-MM-DD HH:mm:ss)
   newestFile: string | null; // 가장 최근 로그 파일명
   newestDate: string | null; // 가장 최근 로그 파일 날짜 (YYYY-MM-DD HH:mm:ss)
-  logDir: string;            // 로그 디렉토리 경로
-  currentDate: string;       // 현재 날짜 (YYYYMMDD 형식)
-  error?: string;            // 통계 조회 실패 시 에러 메시지
+  logDir: string; // 로그 디렉토리 경로
+  currentDate: string; // 현재 날짜 (YYYYMMDD 형식)
+  error?: string; // 통계 조회 실패 시 에러 메시지
 }
 ```
 
@@ -176,7 +181,7 @@ interface CleanupStats {
 import cleaner from 'electron-log-cleaner';
 
 cleaner.setup({
-  maxAge: 30  // 30일간 로그 보관
+  maxAge: 30, // 30일간 로그 보관
 });
 ```
 
@@ -187,13 +192,13 @@ import log from 'electron-log/main';
 import cleaner from 'electron-log-cleaner';
 
 cleaner.setup({
-  maxAge: 7,  // 7일간 로그 보관
+  maxAge: 7, // 7일간 로그 보관
   electronLog: log,
   fileTransport: {
-    maxSize: 5 * 1024 * 1024,  // 파일당 5 MB
+    maxSize: 5 * 1024 * 1024, // 파일당 5 MB
     format: '[{y}-{m}-{d} {h}:{i}:{s}] {text}',
-    level: 'info'
-  }
+    level: 'info',
+  },
 });
 ```
 
@@ -207,7 +212,7 @@ cleaner.setup({
   onError: (error) => {
     console.error('로그 cleaner 에러:', error);
     // 모니터링 서비스로 에러 전송
-  }
+  },
 });
 ```
 
@@ -245,11 +250,11 @@ app.whenReady().then(() => {
     electronLog: log,
     fileTransport: {
       maxSize: 10 * 1024 * 1024,
-      level: 'info'
+      level: 'info',
     },
     onError: (error) => {
       log.error('로그 cleaner 에러:', error);
-    }
+    },
   });
 
   log.info('애플리케이션 시작됨');
@@ -280,6 +285,7 @@ app.whenReady().then(() => {
 ## 더 많은 예제
 
 더 자세한 사용 예제는 다음 문서를 참고하세요:
+
 - [예제 가이드](./examples.md) - 5가지 실용적인 사용 예제
 - [API 문서](./api.md) - 상세한 API 레퍼런스
 

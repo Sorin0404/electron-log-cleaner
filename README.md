@@ -29,16 +29,19 @@ Automatic log file rotation and cleanup utility for electron-log. Manages log fi
 ## Installation
 
 Using npm:
+
 ```bash
 npm install electron-log-cleaner
 ```
 
 Using yarn:
+
 ```bash
 yarn add electron-log-cleaner
 ```
 
 Using pnpm:
+
 ```bash
 pnpm add electron-log-cleaner
 ```
@@ -52,7 +55,7 @@ import cleaner from 'electron-log-cleaner';
 
 // Setup with minimal configuration
 cleaner.setup({
-  maxAge: 30  // Keep logs for 30 days
+  maxAge: 30, // Keep logs for 30 days
 });
 ```
 
@@ -63,7 +66,7 @@ const cleaner = require('electron-log-cleaner');
 
 // Setup with minimal configuration
 cleaner.setup({
-  maxAge: 30  // Keep logs for 30 days
+  maxAge: 30, // Keep logs for 30 days
 });
 ```
 
@@ -76,7 +79,7 @@ import cleaner from 'electron-log-cleaner';
 // Setup cleaner with electron-log instance
 cleaner.setup({
   maxAge: 30,
-  electronLog: log
+  electronLog: log,
 });
 
 // Use electron-log as usual
@@ -89,10 +92,10 @@ log.info('Application started');
 
 ```typescript
 interface CleanerOptions {
-  maxAge: number;                    // Required: Maximum age of log files in days
-  electronLog?: ElectronLog;         // Optional: electron-log instance (auto-detected if not provided)
-  fileTransport?: FileTransportOptions;  // Optional: File transport configuration
-  onError?: (error: Error) => void;  // Optional: Error callback
+  maxAge: number; // Required: Maximum age of log files in days
+  electronLog?: ElectronLog; // Optional: electron-log instance (auto-detected if not provided)
+  fileTransport?: FileTransportOptions; // Optional: File transport configuration
+  onError?: (error: Error) => void; // Optional: Error callback
 }
 ```
 
@@ -100,9 +103,9 @@ interface CleanerOptions {
 
 ```typescript
 interface FileTransportOptions {
-  maxSize?: number;     // Maximum size of a single log file in bytes
-  format?: string;      // Log format string (e.g., '[{y}-{m}-{d}] {text}')
-  level?: string | false;  // Minimum log level: 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly' | false
+  maxSize?: number; // Maximum size of a single log file in bytes
+  format?: string; // Log format string (e.g., '[{y}-{m}-{d}] {text}')
+  level?: string | false; // Minimum log level: 'error' | 'warn' | 'info' | 'verbose' | 'debug' | 'silly' | false
 }
 ```
 
@@ -117,13 +120,13 @@ cleaner.setup({
   maxAge: 30,
   electronLog: log,
   fileTransport: {
-    maxSize: 10 * 1024 * 1024,  // 10 MB
+    maxSize: 10 * 1024 * 1024, // 10 MB
     format: '[{y}-{m}-{d} {h}:{i}:{s}.{ms}] [{level}] {text}',
-    level: 'info'
+    level: 'info',
   },
   onError: (error) => {
     console.error('Cleaner error:', error);
-  }
+  },
 });
 ```
 
@@ -140,11 +143,12 @@ console.log('Deleted files:', result.deletedFiles);
 ```
 
 **Returns**: `CleanupResult`
+
 ```typescript
 interface CleanupResult {
-  deletedCount: number;      // Number of files deleted
-  deletedFiles: string[];    // Array of deleted file names
-  error?: string;            // Error message if cleanup failed
+  deletedCount: number; // Number of files deleted
+  deletedFiles: string[]; // Array of deleted file names
+  error?: string; // Error message if cleanup failed
 }
 ```
 
@@ -161,17 +165,18 @@ console.log(`Newest file: ${stats.newestFile} (${stats.newestDate})`);
 ```
 
 **Returns**: `CleanupStats`
+
 ```typescript
 interface CleanupStats {
-  totalFiles: number;        // Total number of log files
-  totalSize: number;         // Total size of all log files in bytes
+  totalFiles: number; // Total number of log files
+  totalSize: number; // Total size of all log files in bytes
   oldestFile: string | null; // Name of the oldest log file
   oldestDate: string | null; // Date of the oldest log file (YYYY-MM-DD HH:mm:ss)
   newestFile: string | null; // Name of the newest log file
   newestDate: string | null; // Date of the newest log file (YYYY-MM-DD HH:mm:ss)
-  logDir: string;            // Path to the log directory
-  currentDate: string;       // Current date in YYYYMMDD format
-  error?: string;            // Error message if stats retrieval failed
+  logDir: string; // Path to the log directory
+  currentDate: string; // Current date in YYYYMMDD format
+  error?: string; // Error message if stats retrieval failed
 }
 ```
 
@@ -183,7 +188,7 @@ interface CleanupStats {
 import cleaner from 'electron-log-cleaner';
 
 cleaner.setup({
-  maxAge: 30  // Keep logs for 30 days
+  maxAge: 30, // Keep logs for 30 days
 });
 ```
 
@@ -194,13 +199,13 @@ import log from 'electron-log/main';
 import cleaner from 'electron-log-cleaner';
 
 cleaner.setup({
-  maxAge: 7,  // Keep logs for 7 days
+  maxAge: 7, // Keep logs for 7 days
   electronLog: log,
   fileTransport: {
-    maxSize: 5 * 1024 * 1024,  // 5 MB per file
+    maxSize: 5 * 1024 * 1024, // 5 MB per file
     format: '[{y}-{m}-{d} {h}:{i}:{s}] {text}',
-    level: 'info'
-  }
+    level: 'info',
+  },
 });
 ```
 
@@ -214,7 +219,7 @@ cleaner.setup({
   onError: (error) => {
     console.error('Log cleaner error:', error);
     // Send error to monitoring service
-  }
+  },
 });
 ```
 
@@ -252,11 +257,11 @@ app.whenReady().then(() => {
     electronLog: log,
     fileTransport: {
       maxSize: 10 * 1024 * 1024,
-      level: 'info'
+      level: 'info',
     },
     onError: (error) => {
       log.error('Log cleaner error:', error);
-    }
+    },
   });
 
   log.info('Application started');

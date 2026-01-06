@@ -26,32 +26,42 @@ describe('validator', () => {
     });
 
     it('should throw if fileTransport is not an object', () => {
-      expect(() => validateOptions({
-        maxAge: 30,
-        fileTransport: 'string',
-      })).toThrow('fileTransport must be an object');
+      expect(() =>
+        validateOptions({
+          maxAge: 30,
+          fileTransport: 'string',
+        })
+      ).toThrow('fileTransport must be an object');
 
-      expect(() => validateOptions({
-        maxAge: 30,
-        fileTransport: 123,
-      })).toThrow('fileTransport must be an object');
+      expect(() =>
+        validateOptions({
+          maxAge: 30,
+          fileTransport: 123,
+        })
+      ).toThrow('fileTransport must be an object');
 
-      expect(() => validateOptions({
-        maxAge: 30,
-        fileTransport: [],
-      })).toThrow('fileTransport must be an object');
+      expect(() =>
+        validateOptions({
+          maxAge: 30,
+          fileTransport: [],
+        })
+      ).toThrow('fileTransport must be an object');
     });
 
     it('should throw if onError is not a function', () => {
-      expect(() => validateOptions({
-        maxAge: 30,
-        onError: 'string',
-      })).toThrow('onError must be a function');
+      expect(() =>
+        validateOptions({
+          maxAge: 30,
+          onError: 'string',
+        })
+      ).toThrow('onError must be a function');
 
-      expect(() => validateOptions({
-        maxAge: 30,
-        onError: 123,
-      })).toThrow('onError must be a function');
+      expect(() =>
+        validateOptions({
+          maxAge: 30,
+          onError: 123,
+        })
+      ).toThrow('onError must be a function');
     });
 
     it('should pass with valid minimal options', () => {
@@ -61,12 +71,14 @@ describe('validator', () => {
     });
 
     it('should pass with all valid options', () => {
-      expect(() => validateOptions({
-        maxAge: 30,
-        electronLog: {},
-        fileTransport: { maxSize: 1000 },
-        onError: () => {},
-      })).not.toThrow();
+      expect(() =>
+        validateOptions({
+          maxAge: 30,
+          electronLog: {},
+          fileTransport: { maxSize: 1000 },
+          onError: () => {},
+        })
+      ).not.toThrow();
     });
   });
 
@@ -84,10 +96,10 @@ describe('validator', () => {
 
     it('should throw if level is invalid', () => {
       expect(() => validateFileTransport({ level: 'invalid' })).toThrow(
-        'level must be a valid log level',
+        'level must be a valid log level'
       );
       expect(() => validateFileTransport({ level: 123 })).toThrow(
-        'level must be a valid log level',
+        'level must be a valid log level'
       );
       expect(() => validateFileTransport({ level: {} })).toThrow('level must be a valid log level');
     });
@@ -113,11 +125,13 @@ describe('validator', () => {
     });
 
     it('should pass with all valid options', () => {
-      expect(() => validateFileTransport({
-        maxSize: 1000,
-        format: '[{text}]',
-        level: 'info',
-      })).not.toThrow();
+      expect(() =>
+        validateFileTransport({
+          maxSize: 1000,
+          format: '[{text}]',
+          level: 'info',
+        })
+      ).not.toThrow();
     });
 
     it('should pass with empty object', () => {
