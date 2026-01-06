@@ -67,10 +67,12 @@ describe('ElectronLogCleaner', () => {
     });
 
     it('should setup with minimal options', () => {
-      expect(() => cleaner.setup({
-        maxAge: 30,
-        electronLog: mockLog,
-      })).not.toThrow();
+      expect(() =>
+        cleaner.setup({
+          maxAge: 30,
+          electronLog: mockLog,
+        })
+      ).not.toThrow();
 
       expect(cleaner.maxAge).toBe(30);
       expect(cleaner.log).toBe(mockLog);
@@ -112,11 +114,13 @@ describe('ElectronLogCleaner', () => {
         },
       };
 
-      expect(() => cleaner.setup({
-        maxAge: 30,
-        electronLog: invalidMock,
-        onError,
-      })).toThrow();
+      expect(() =>
+        cleaner.setup({
+          maxAge: 30,
+          electronLog: invalidMock,
+          onError,
+        })
+      ).toThrow();
 
       expect(onError).toHaveBeenCalled();
     });
@@ -296,7 +300,7 @@ describe('ElectronLogCleaner', () => {
 
       // Should log warning about electron not being available
       expect(consoleWarnSpy).toHaveBeenCalledWith(
-        expect.stringContaining('Could not register quit handler'),
+        expect.stringContaining('Could not register quit handler')
       );
 
       consoleWarnSpy.mockRestore();
