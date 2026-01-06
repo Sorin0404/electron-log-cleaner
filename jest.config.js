@@ -11,4 +11,5 @@ module.exports = {
     },
   },
   testMatch: ['**/test/**/*.test.js'],
+  forceExit: true,
 };
