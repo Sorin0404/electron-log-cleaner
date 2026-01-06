@@ -62,7 +62,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PR checks (title validation, TODO detection, security audit)
 
 #### Requirements
-- Node.js >= 14.0.0
+- Node.js >= 16.0.0
 - electron-log >= 5.0.0 (peer dependency)
 - dayjs for date manipulation
 

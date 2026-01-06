@@ -28,8 +28,19 @@ Automatic log file rotation and cleanup utility for electron-log. Manages log fi
 
 ## Installation
 
+Using npm:
 ```bash
 npm install electron-log-cleaner
+```
+
+Using yarn:
+```bash
+yarn add electron-log-cleaner
+```
+
+Using pnpm:
+```bash
+pnpm add electron-log-cleaner
 ```
 
 ## Quick Start
@@ -284,7 +295,7 @@ npm run test:coverage
 
 ## Requirements
 
-- Node.js >= 14
+- Node.js >= 16.0.0
 - electron-log >= 5.0.0 (peer dependency)
 
 ## License

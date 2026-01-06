@@ -21,8 +21,19 @@ electron-log의 자동 로그 파일 회전 및 정리 유틸리티입니다. �
 
 ## 설치
 
+npm 사용:
 ```bash
 npm install electron-log-cleaner
+```
+
+yarn 사용:
+```bash
+yarn add electron-log-cleaner
+```
+
+pnpm 사용:
+```bash
+pnpm add electron-log-cleaner
 ```
 
 ## 빠른 시작
@@ -283,7 +294,7 @@ npm run test:coverage
 
 ## 요구사항
 
-- Node.js >= 14
+- Node.js >= 16.0.0
 - electron-log >= 5.0.0 (peer dependency)
 
 ## 라이센스

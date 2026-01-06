@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/Sorin0404/electron-log-cleaner#readme",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=16.0.0"
   },
   "peerDependencies": {
     "electron-log": "^5.0.0"
