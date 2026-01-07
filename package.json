@@ -26,7 +26,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Sorin0404/electron-log-cleaner.git"
+    "url": "git+https://github.com/Sorin0404/electron-log-cleaner.git"
   },
   "bugs": {
     "url": "https://github.com/Sorin0404/electron-log-cleaner/issues"
@@ -35,11 +35,9 @@
   "engines": {
     "node": ">=16.0.0"
   },
-  "peerDependencies": {
-    "electron-log": "^5.0.0"
-  },
   "dependencies": {
-    "dayjs": "^1.11.10"
+    "dayjs": "^1.11.10",
+    "electron-log": "^5.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
