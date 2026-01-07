@@ -1,7 +1,8 @@
 # electron-log-cleaner
 
 [![CI](https://github.com/Sorin0404/electron-log-cleaner/workflows/CI/badge.svg)](https://github.com/Sorin0404/electron-log-cleaner/actions/workflows/ci.yml)
-[![npm version](https://badge.fury.io/js/electron-log-cleaner.svg)](https://www.npmjs.com/package/electron-log-cleaner)
+[![npm version](https://img.shields.io/npm/v/electron-log-cleaner.svg)](https://www.npmjs.com/package/electron-log-cleaner)
+[![npm downloads](https://img.shields.io/npm/dm/electron-log-cleaner.svg)](https://www.npmjs.com/package/electron-log-cleaner)
 [![codecov](https://codecov.io/gh/Sorin0404/electron-log-cleaner/branch/main/graph/badge.svg)](https://codecov.io/gh/Sorin0404/electron-log-cleaner)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/node/v/electron-log-cleaner.svg)](https://nodejs.org)
