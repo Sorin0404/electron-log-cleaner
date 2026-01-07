@@ -13,6 +13,28 @@ const instance = new ElectronLogCleaner();
 module.exports = instance;
 
 /**
+ * Export electron-log for direct access via getter
+ * Users can use cleaner.log instead of importing electron-log separately
+ * This getter ensures we always return the current log instance after setup()
+ */
+Object.defineProperty(module.exports, 'log', {
+  get() {
+    // Try to get from instance first (after setup)
+    if (instance.log) {
+      return instance.log;
+    }
+    // Fall back to require if not set up yet
+    try {
+      // eslint-disable-next-line global-require
+      return require('electron-log/main');
+    } catch (error) {
+      return null;
+    }
+  },
+  enumerable: true,
+});
+
+/**
  * Export the class for testing purposes
  * Allows creating multiple instances in tests
  */
